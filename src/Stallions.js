@@ -6,12 +6,12 @@ const Stallions = ({ data, updateFav }) => {
     <>
       <div className="coins-container">
         <div className="heads">
-          <p className="coins-rank">Coin Rank</p>
-          <p>coin</p>
-          <p>symbol</p>
-          <p>Price</p>
-          <p>24h change</p>
-          <p>Market Cap</p>
+          <h4 className="coins-rank">Coin Rank</h4>
+          <h4>coin</h4>
+          <h4>symbol</h4>
+          <h4>Price</h4>
+          <h4>24h change</h4>
+          <h4>Market Cap</h4>
         </div>
         {data.map((coin, index) => {
           return (

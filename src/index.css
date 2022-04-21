@@ -125,6 +125,7 @@ p {
 
   h4 {
     font-size: 1rem;
+    width:18%;
   }
 
   body {
@@ -265,6 +266,7 @@ img {
   padding: 0.25rem 1rem;
   border-radius: var(--radius);
   text-transform: capitalize;
+  color:cyan;
 } 
 .coin:hover{
   color:cyan;
