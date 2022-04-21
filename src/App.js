@@ -24,7 +24,6 @@ function App() {
     if (from === "Stallions") {
       if (newData[index].fav === true) {
         newData[index].fav = false;
-        console.log(fav.length);
         for (let i = 0; i < fav.length; i++) {
           if (newData[index].id === fav[i].id) continue;
           newFav.push(fav[i]);
@@ -37,7 +36,6 @@ function App() {
     } else {
       newFav = fav.slice();
       const ele = newFav[index];
-      console.log(index, ele);
       newFav.splice(index, 1);
       setFav(newFav);
       if (ele.market_cap_rank > 100) return;
