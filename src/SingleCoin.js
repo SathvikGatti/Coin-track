@@ -1,7 +1,7 @@
 import React from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-const SingleCoin = ({ coin, updateFav, index }) => {
+const SingleCoin = ({ coin, updateFav, index, from }) => {
   const {
     id,
     symbol,
@@ -16,20 +16,26 @@ const SingleCoin = ({ coin, updateFav, index }) => {
     <>
       <div key={id} className="coin">
         <p className="coins-rank">
-          <AiOutlineHeart
-            onClick={() => {
-              updateFav(index);
-            }}
-            style={{ position: "relative", top: "2px", right: "2px" }}
-          />
+          {coin.fav === true ? (
+            <AiFillHeart
+              onClick={() => {
+                updateFav(index, from);
+              }}
+              className="fav"
+            />
+          ) : (
+            <AiOutlineHeart
+              onClick={() => {
+                updateFav(index, from);
+              }}
+              className="fav"
+            />
+          )}
+
           {market_cap_rank}
         </p>
         <p>
-          <img
-            src={image}
-            alt={name}
-            style={{ position: "relative", top: "4px", right: "2px" }}
-          />
+          <img src={image} alt={name} />
           {name}
         </p>
         <p>{symbol}</p>

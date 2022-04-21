@@ -223,6 +223,9 @@ img {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: var(--light-shadow);
+  position: relative;
+  top: 4px;
+  right: 2px;
 }
 
 .section-center:hover {
@@ -283,6 +286,15 @@ p{
   color:var(--clr-red-light)
 }
 
-/* img{
-  width: 16.66%;
-} */
+.fav 
+  {
+  position: relative;
+    top: 2px;
+    right: 2px;
+    overflow: hidden;
+}
+
+.fav:hover{
+  cursor:pointer;
+}
+

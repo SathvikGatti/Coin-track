@@ -20,7 +20,7 @@ const Stallions = ({ data, updateFav }) => {
               coin={coin}
               key={index}
               updateFav={updateFav}
-              S
+              from={"Stallions"}
             />
           );
         })}

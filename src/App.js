@@ -18,13 +18,34 @@ function App() {
     });
     setData(response);
   };
-  const updateFav = (index) => {
-    console.log("Fired with", index);
-    let newFav = fav;
-    console.log(data[index]["fav"]);
-    if (data[index].fav === true) return;
-    data[index]["fav"] = true;
-    newFav.push(data[index]);
+  const updateFav = (index, from) => {
+    let newData = data.slice();
+    let newFav = [];
+    if (from === "Stallions") {
+      if (newData[index].fav === true) {
+        newData[index].fav = false;
+        console.log(fav.length);
+        for (let i = 0; i < fav.length; i++) {
+          if (newData[index].id === fav[i].id) continue;
+          newFav.push(fav[i]);
+        }
+      } else {
+        newFav = fav.slice();
+        newData[index].fav = true;
+        newFav.push(newData[index]);
+      }
+    } else {
+      newFav = fav.slice();
+      const ele = newFav[index];
+      console.log(index, ele);
+      newFav.splice(index, 1);
+      setFav(newFav);
+      if (ele.market_cap_rank > 100) return;
+      newData = data.slice();
+      newData[ele.market_cap_rank - 1].fav = false;
+      setData(newData);
+    }
+    setData(newData);
     setFav(newFav);
   };
   useEffect(() => {
