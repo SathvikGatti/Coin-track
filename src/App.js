@@ -14,7 +14,7 @@ function App() {
     let response = await fetch(url);
     response = await response.json();
     response.map((obj) => {
-      obj["fav"] = false;
+      return (obj["fav"] = false);
     });
     setData(response);
   };

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  AiOutlineHeart,
-  AiFillHeart,
-  AiTwotoneEyeInvisible,
-} from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const SingleCoin = (props) => {
   const { coin, updateFav, index, from } = props;
