@@ -54,9 +54,18 @@ const SingleCoin = (props) => {
         <p>{symbol}</p>
         <p>${current_price}</p>
         {price_change_percentage_24h > 0 ? (
-          <p className="profit">{price_change_percentage_24h.toFixed(2)}%</p>
+          <p className="profit">
+            {price_change_percentage_24h === null
+              ? "NULL"
+              : `${price_change_percentage_24h.toFixed(2)}%`}
+            %
+          </p>
         ) : (
-          <p className="loss">{price_change_percentage_24h.toFixed(2)}%</p>
+          <p className="loss">
+            {price_change_percentage_24h === null
+              ? "NULL"
+              : `${price_change_percentage_24h.toFixed(2)}%`}
+          </p>
         )}
 
         <p>${market_cap}</p>
