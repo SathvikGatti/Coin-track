@@ -18,7 +18,8 @@ function App() {
     });
     setData(response);
   };
-  const updateFav = (index, from) => {
+  const updateFav = (index, from, coin) => {
+    console.log(index);
     let newData = data.slice();
     let newFav = [];
     if (from === "Stallions") {
@@ -35,6 +36,29 @@ function App() {
       }
     } else {
       newFav = fav.slice();
+      if (index === -1) {
+        if (coin.fav === false) {
+          coin.fav = true;
+          newFav.push(coin);
+          setFav(newFav);
+          if (coin.market_cap_rank <= 100) {
+            newData[coin.market_cap_rank - 1].fav = true;
+            setData(newData);
+          }
+          return;
+        }
+        let temp = [];
+        for (let i = 0; i < newFav.length; i++) {
+          if (coin.id === newFav[i].id) continue;
+          temp.push(newFav[i]);
+        }
+        setFav(temp);
+        if (coin.market_cap_rank <= 100) {
+          newData[coin.market_cap_rank - 1].fav = false;
+          setData(newData);
+        }
+        return;
+      }
       const ele = newFav[index];
       newFav.splice(index, 1);
       setFav(newFav);
@@ -56,7 +80,9 @@ function App() {
     <>
       <Navbar updateTab={updateTab} tab={tab} />
       {tab === "Stallions" && <Stallions data={data} updateFav={updateFav} />}
-      {tab === "Favourites" && <Favourites fav={fav} updateFav={updateFav} />}
+      {tab === "Favourites" && (
+        <Favourites fav={fav} updateFav={updateFav} data={data} />
+      )}
       {tab === "Portfolio" && <Portfolio />}
     </>
   );

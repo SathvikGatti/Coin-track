@@ -1,7 +1,12 @@
 import React from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiTwotoneEyeInvisible,
+} from "react-icons/ai";
 
-const SingleCoin = ({ coin, updateFav, index, from }) => {
+const SingleCoin = (props) => {
+  const { coin, updateFav, index, from } = props;
   const {
     id,
     symbol,
@@ -19,14 +24,22 @@ const SingleCoin = ({ coin, updateFav, index, from }) => {
           {coin.fav === true ? (
             <AiFillHeart
               onClick={() => {
-                updateFav(index, from);
+                if (index === -1) {
+                  const { updateSearchFav } = props;
+                  updateSearchFav();
+                  updateFav(index, from, coin);
+                } else updateFav(index, from);
               }}
               className="fav"
             />
           ) : (
             <AiOutlineHeart
               onClick={() => {
-                updateFav(index, from);
+                if (index === -1) {
+                  const { updateSearchFav } = props;
+                  updateSearchFav();
+                  updateFav(index, from, coin);
+                } else updateFav(index, from);
               }}
               className="fav"
             />
