@@ -54,7 +54,6 @@ const SingleCoin = (props) => {
             {price_change_percentage_24h === null
               ? "NULL"
               : `${price_change_percentage_24h.toFixed(2)}%`}
-            %
           </p>
         ) : (
           <p className="loss">
