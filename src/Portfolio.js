@@ -105,7 +105,8 @@ const Portfolio = ({ fav, updateFav, data, portfolio, setPortfolio }) => {
       return;
     }
     setLoading(true);
-    const apiUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${input}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
+    let searchCoin = input.toLowerCase();
+    const apiUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchCoin}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
     getData(apiUrl);
   };
   const updateSearchFav = () => {
