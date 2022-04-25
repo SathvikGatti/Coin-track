@@ -10,6 +10,7 @@ function App() {
   const [data, setData] = useState([]);
   const [tab, setTab] = useState("Stallions");
   const [fav, setFav] = useState([]);
+  const [portfolio, setPortfolio] = useState([]);
   const getData = async () => {
     let response = await fetch(url);
     response = await response.json();
@@ -41,7 +42,7 @@ function App() {
           coin.fav = true;
           newFav.push(coin);
           setFav(newFav);
-          if (coin.market_cap_rank <= 100) {
+          if (coin.market_cap_rank <= 100 && coin.market_cap_rank >= 1) {
             newData[coin.market_cap_rank - 1].fav = true;
             setData(newData);
           }
@@ -53,7 +54,7 @@ function App() {
           temp.push(newFav[i]);
         }
         setFav(temp);
-        if (coin.market_cap_rank <= 100) {
+        if (coin.market_cap_rank <= 100 && coin.market_cap_rank >= 1) {
           newData[coin.market_cap_rank - 1].fav = false;
           setData(newData);
         }
@@ -83,7 +84,15 @@ function App() {
       {tab === "Favourites" && (
         <Favourites fav={fav} updateFav={updateFav} data={data} />
       )}
-      {tab === "Portfolio" && <Portfolio />}
+      {tab === "Portfolio" && (
+        <Portfolio
+          fav={fav}
+          updateFav={updateFav}
+          data={data}
+          portfolio={portfolio}
+          setPortfolio={setPortfolio}
+        />
+      )}
     </>
   );
 }
