@@ -20,7 +20,6 @@ function App() {
     setData(response);
   };
   const updateFav = (index, from, coin) => {
-    console.log(index);
     let newData = data.slice();
     let newFav = [];
     if (from === "Stallions") {

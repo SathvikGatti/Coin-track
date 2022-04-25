@@ -84,19 +84,26 @@ const SingleCoin = (props) => {
         {from === "Portfolio" && (
           <p
             className={
-              ((current_price * holding - usdtBuyPrice) / current_price) *
-                holding *
+              ((current_price * holding - usdtBuyPrice) /
+                (current_price * holding)) *
                 100 >
               0
                 ? "profit"
                 : "loss"
             }
           >
-            {(
-              ((current_price * holding - usdtBuyPrice) / current_price) *
-              holding *
-              100
-            ).toFixed(2)}
+            {current_price * holding < usdtBuyPrice
+              ? (
+                  ((current_price * holding - usdtBuyPrice) /
+                    (current_price * holding)) *
+                  100
+                ).toFixed(2)
+              : Math.abs(
+                  (
+                    ((usdtBuyPrice - current_price * holding) / usdtBuyPrice) *
+                    100
+                  ).toFixed(2)
+                )}
             %
           </p>
         )}

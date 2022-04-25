@@ -15,28 +15,28 @@ const Portfolio = ({ fav, updateFav, data, portfolio, setPortfolio }) => {
     setAddCoin(!addCoin);
   };
 
-  const getDashboardValues = () => {
-    let investedValue = 0;
-    let currentValue = 0,
-      profitLoss = 0;
-    portfolio.forEach((element) => {
-      const { usdtBuyPrice, current_price, holding } = element;
-      investedValue += parseInt(usdtBuyPrice);
-      currentValue += holding * current_price;
-    });
-    console.log(investedValue);
-    console.log(currentValue);
-    console.log(((investedValue - currentValue) / investedValue) * 100);
-    profitLoss = ((currentValue - investedValue) / currentValue) * 100;
-    let dbValues = [
-      parseInt(investedValue).toFixed(2),
-      parseInt(currentValue).toFixed(2),
-      parseInt(profitLoss).toFixed(2),
-    ];
-    console.log(dbValues);
-    setDashboardValues(dbValues);
-  };
   useEffect(() => {
+    console.log("UseEffect triggers");
+    const getDashboardValues = () => {
+      let investedValue = 0;
+      let currentValue = 0,
+        profitLoss = 0;
+      portfolio.forEach((element) => {
+        const { usdtBuyPrice, current_price, holding } = element;
+        investedValue += parseInt(usdtBuyPrice);
+        currentValue += holding * current_price;
+      });
+      if (currentValue > investedValue)
+        profitLoss = ((investedValue - currentValue) / investedValue) * 100;
+      else profitLoss = ((currentValue - investedValue) / currentValue) * 100;
+
+      let dbValues = [
+        parseInt(investedValue).toFixed(2),
+        parseInt(currentValue).toFixed(2),
+        parseInt(profitLoss).toFixed(2),
+      ];
+      setDashboardValues(dbValues);
+    };
     getDashboardValues();
   }, [portfolio]);
   const getData = async (apiUrl) => {
@@ -71,7 +71,6 @@ const Portfolio = ({ fav, updateFav, data, portfolio, setPortfolio }) => {
   };
   const handleAddCoin = (e) => {
     e.preventDefault();
-    console.log(prices);
     if (prices[0] <= 0 || prices[1] <= 0) {
       alert("Values cannot be zero or negative");
       return;
@@ -87,7 +86,6 @@ const Portfolio = ({ fav, updateFav, data, portfolio, setPortfolio }) => {
     let newList = portfolio.slice();
     newList.push(newCoin);
     setPortfolio(newList);
-    getDashboardValues();
   };
   const deleteFromPortfolio = (id) => {
     let newPort = [];
