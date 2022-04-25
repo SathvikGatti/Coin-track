@@ -27,8 +27,8 @@ const Portfolio = ({ fav, updateFav, data, portfolio, setPortfolio }) => {
         currentValue += holding * current_price;
       });
       if (currentValue > investedValue)
-        profitLoss = ((investedValue - currentValue) / investedValue) * 100;
-      else profitLoss = ((currentValue - investedValue) / currentValue) * 100;
+        profitLoss = ((currentValue - investedValue) / investedValue) * 100;
+      else profitLoss = -((investedValue - currentValue) / investedValue) * 100;
 
       let dbValues = [
         parseInt(investedValue).toFixed(2),
