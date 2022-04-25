@@ -15,7 +15,6 @@ const Favourites = ({ fav, updateFav, data }) => {
         setError("Please check internet connection");
       }
       response = await response.json();
-      console.log("Checking for market cap rand", response);
       setLoading(false);
       if (response.length === 0) {
         setError("Could not find what you were looking for:(");
@@ -30,6 +29,8 @@ const Favourites = ({ fav, updateFav, data }) => {
         }
       }
       if (flag) response[0]["fav"] = false;
+      if (response[0].market_cap_rank === null)
+        response[0].market_cap_rank = -1;
       setRequestedCoin(response[0]);
     } catch (error) {
       setLoading(false);

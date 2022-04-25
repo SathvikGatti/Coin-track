@@ -22,14 +22,14 @@ const Navbar = ({ updateTab, tab }) => {
           >
             Favourites
           </button>
-          {/* <button
+          <button
             className={tab === "Portfolio" ? "btn-selected" : "btn"}
             onClick={() => {
               updateTab("Portfolio");
             }}
           >
             Portfolio
-          </button> */}
+          </button>
         </div>
       </ul>
     </nav>
